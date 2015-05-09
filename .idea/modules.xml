@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SelfieTime.iml" filepath="$PROJECT_DIR$/SelfieTime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Selfie_Time-master.iml" filepath="$PROJECT_DIR$/Selfie_Time-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

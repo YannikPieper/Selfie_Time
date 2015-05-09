@@ -11,7 +11,8 @@ import 	android.content.Intent;
 
 public class MainActivity extends ActionBarActivity {
 
-    private boolean start = true;
+    private boolean start = false;
+    private boolean isrunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,39 +20,47 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        final Intent intent1 = new Intent(getBaseContext(),MyService.class);
 
         Switch switch1 = (Switch) this.findViewById (R.id.switch1);
-        switch1.setChecked(true);
+        if(isrunning == false){
+            switch1.setChecked(false);
+        }
+
+
         switch1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            public void onClick(View v) { //OnClickListener for the switch
 
-                if(start == false){
+                if(start == false){ //check the state of the button
 
 
-                CharSequence text = "Starting Selfie Time!";
-                int duration = Toast.LENGTH_SHORT;
+                CharSequence text = "Starting Selfie Time!"; //Text shown by the toast
+                int duration = Toast.LENGTH_SHORT; //set the Toast duration to: short
 
-                Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-                toast.show();
+                Toast toast = Toast.makeText(getApplicationContext(), text, duration); //Create the toast
+                toast.show(); //show the toast
 
-                startService(new Intent(getBaseContext(),MyService.class));
-
+                Intent intent1 = new Intent(getBaseContext(),MyService.class); //Create a new service to start the selfie countdown
+                startService(intent1);
                 start = true;
+                isrunning = true;
+
                 }
                 else {
-                    CharSequence text = "Selfie Time Terminated";
-                    int duration = Toast.LENGTH_SHORT;
+                    CharSequence text = "Selfie Time Terminated"; //Text shown by the toast
+                    int duration = Toast.LENGTH_SHORT; //set the Toast duration to: short
 
-                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-                    toast.show();
+                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);  //Create the toast
+                    toast.show(); //show the toast
+                    stopService(intent1); //command to stop the service in the background
 
                     start = false;
+                    isrunning = false;
                 }
 
 
