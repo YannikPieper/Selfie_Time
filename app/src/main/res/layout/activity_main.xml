@@ -1,9 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#ff00c5ff">
 
 
     <TextView
@@ -16,27 +20,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="142dp" />
 
-    <com.google.ads.AdView
-       xmlns:googleads="http://schemas.android.com/apk/lib/com.google.ads"
-       android:id="@+id/ad"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       googleads:adSize="BANNER"
-       googleads:adUnitId="@string/admob_id" />
-    <TextView android:id="@+id/title"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="@string/banner_top" />
-    <TextView android:id="@+id/status"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content" />
-
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start    "
         android:id="@+id/switch1"
+        android:enabled="true"
+        android:button="@android:color/holo_blue_light"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

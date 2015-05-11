@@ -19,6 +19,8 @@ public class MyService extends Service {
     private int zahl = 1;
     private static final int NOTIFICATION_ID = 0;
     private boolean stop = false;
+    private String Challenge;
+    private long ChallengeNumber;
 
     /* Class for the countdown and the notification
      *
@@ -58,8 +60,9 @@ public class MyService extends Service {
                 }
 
                     public void onFinish() { //Countdown has finished
+
                         if(stop == false){ //It's only to check if the switch button isn't toggled of
-                        CharSequence text = "Take a Selfie!!!"; //Text shown by toast
+                        CharSequence text = "Take a selfie!!"; //Text shown by toast
                         int duration = Toast.LENGTH_SHORT; //Toast duration
 
                         Toast toast = Toast.makeText(getApplicationContext(), text, duration);
@@ -74,23 +77,67 @@ public class MyService extends Service {
 
 }
 
-    public void setNotification() { //set a notification for the user
+    public void setNotification() {
 
+        getChallenge();
         NotificationManager mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-          Notification n = new Notification();
-          n.icon = R.drawable.ic_launcher; //Icon of the app which is shown by the notification
-          n.tickerText = "Selfie Time!!!";
-          n.when = System.currentTimeMillis();
+        Notification n = new Notification();
+        n.icon = R.drawable.ic_launcher;
+        n.tickerText = "Selfie Time!!!";
+        n.when = System.currentTimeMillis();
 
         Intent selfie = new Intent(this, EasterEgg.class); //Method to create a new Class for the camera
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, selfie, 0);
 
-
-         CharSequence contentText = "Press for Camera"; //Content of the Notification
-          CharSequence contentTitle = "Selfie Time!";
+         CharSequence contentText = Challenge; //Content of the Notification
+          CharSequence contentTitle = "Press for Camera";
         n.setLatestEventInfo(this, contentTitle, contentText, contentIntent);
 
         mNM.notify(NOTIFICATION_ID, n);
+
+    }
+
+    public void getChallenge(){
+        Random rand = new Random();
+        ChallengeNumber = (rand.nextInt(9) + 1);
+
+        if(ChallengeNumber == 1){
+            Challenge = "Take a Selfie with a Stranger";
+        }
+        if(ChallengeNumber == 2){
+            Challenge = "Take a Selfie with an animal";
+        }
+        if(ChallengeNumber == 3){
+            Challenge = "Take a Selfie while your lying on the floor";
+        }
+        if(ChallengeNumber == 4){
+            Challenge = "Take a Selfie while you look nasty";
+        }
+        if(ChallengeNumber == 5){
+            Challenge = "Take a Selfie whith a duck face";
+        }
+        if(ChallengeNumber == 6){
+            Challenge = "Take a Suglie";
+        }
+        if(ChallengeNumber == 7){
+            Challenge = "Take a Selfie while you lick a door";
+        }
+        if(ChallengeNumber == 8){
+            Challenge = "Take a Selfie on the top of an object";
+        }
+        if(ChallengeNumber == 9){
+            Challenge = "Take a Selfie while hugging a stranger";
+        }
+        if(ChallengeNumber == 10){
+            Challenge = "Take a Selfie while kissing a stranger";
+        }
+
+
+
+
+
+
+
     }
     @Override
     public void onDestroy() { //destroy method for the service
