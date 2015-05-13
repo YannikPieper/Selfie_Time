@@ -15,7 +15,7 @@ import android.app.PendingIntent;
 
 public class MyService extends Service {
     private long randomNumber;
-    private long minute = 1000;
+    private long minute = 60000;
     private int zahl = 1;
     private static final int NOTIFICATION_ID = 0;
     private boolean stop = false;
@@ -48,7 +48,7 @@ public class MyService extends Service {
     public void counter() {
 
             Random rand = new Random();
-            randomNumber = (rand.nextInt(1) + 5) * minute;
+            randomNumber = (rand.nextInt(25) + 5) * minute;
             /*Creates a random number between 1 and 5 and multiplicate it with the minute variable (1000)
               Method to get a random number of minutes
              */
@@ -60,9 +60,11 @@ public class MyService extends Service {
                 }
 
                     public void onFinish() { //Countdown has finished
+                        getChallenge();
 
                         if(stop == false){ //It's only to check if the switch button isn't toggled of
-                        CharSequence text = "Take a selfie!!"; //Text shown by toast
+
+                        CharSequence text = Challenge; //Text shown by toast
                         int duration = Toast.LENGTH_SHORT; //Toast duration
 
                         Toast toast = Toast.makeText(getApplicationContext(), text, duration);
@@ -79,10 +81,11 @@ public class MyService extends Service {
 
     public void setNotification() {
 
-        getChallenge();
+
+
         NotificationManager mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Notification n = new Notification();
-        n.icon = R.drawable.ic_launcher;
+        n.icon = R.drawable.icon;
         n.tickerText = "Selfie Time!!!";
         n.when = System.currentTimeMillis();
 
@@ -91,9 +94,13 @@ public class MyService extends Service {
 
          CharSequence contentText = Challenge; //Content of the Notification
           CharSequence contentTitle = "Press for Camera";
+
         n.setLatestEventInfo(this, contentTitle, contentText, contentIntent);
 
         mNM.notify(NOTIFICATION_ID, n);
+
+
+
 
     }
 
@@ -111,7 +118,7 @@ public class MyService extends Service {
             Challenge = "Take a Selfie while your lying on the floor";
         }
         if(ChallengeNumber == 4){
-            Challenge = "Take a Selfie while you look nasty";
+            Challenge = "Take a sluty Selfie";
         }
         if(ChallengeNumber == 5){
             Challenge = "Take a Selfie whith a duck face";
@@ -131,6 +138,7 @@ public class MyService extends Service {
         if(ChallengeNumber == 10){
             Challenge = "Take a Selfie while kissing a stranger";
         }
+
 
 
 
