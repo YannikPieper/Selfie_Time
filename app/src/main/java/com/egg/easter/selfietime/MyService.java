@@ -15,7 +15,7 @@ import android.app.PendingIntent;
 
 public class MyService extends Service {
     private long randomNumber;
-    private long minute = 60000;
+    private long minute = 1000;
     private int zahl = 1;
     private static final int NOTIFICATION_ID = 0;
     private boolean stop = false;
@@ -48,7 +48,7 @@ public class MyService extends Service {
     public void counter() {
 
             Random rand = new Random();
-            randomNumber = (rand.nextInt(25) + 5) * minute;
+            randomNumber = (rand.nextInt(1) + 5) * minute;
             /*Creates a random number between 1 and 5 and multiplicate it with the minute variable (1000)
               Method to get a random number of minutes
              */
@@ -88,6 +88,8 @@ public class MyService extends Service {
         n.icon = R.drawable.icon;
         n.tickerText = "Selfie Time!!!";
         n.when = System.currentTimeMillis();
+        n.defaults |= Notification.DEFAULT_SOUND;
+        n.defaults |= Notification.DEFAULT_VIBRATE;
 
         Intent selfie = new Intent(this, EasterEgg.class); //Method to create a new Class for the camera
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, selfie, 0);
@@ -106,7 +108,7 @@ public class MyService extends Service {
 
     public void getChallenge(){
         Random rand = new Random();
-        ChallengeNumber = (rand.nextInt(9) + 1);
+        ChallengeNumber = (rand.nextInt(11) + 1);
 
         if(ChallengeNumber == 1){
             Challenge = "Take a Selfie with a Stranger";
@@ -137,6 +139,12 @@ public class MyService extends Service {
         }
         if(ChallengeNumber == 10){
             Challenge = "Take a Selfie while kissing a stranger";
+        }
+        if(ChallengeNumber == 11){
+            Challenge = "Take a Selfie with a friend";
+        }
+        if(ChallengeNumber == 12){
+            Challenge = "Take a Selfie while shouting";
         }
 
 
