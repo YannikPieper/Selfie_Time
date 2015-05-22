@@ -18,6 +18,7 @@ public class EasterEgg extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myclass);
+
         capturePhoto(); //main method to open the camera
     }
 
